@@ -75,9 +75,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-//        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-        footerView.frame = CGRect.init(x: 0, y: 0, width: tableView.bounds.width, height: 44)
-        spinner.center = footerView.center
+        spinner.center = CGPoint.init(x: tableView.bounds.width/2 - 22, y: 22)
         footerView.addSubview(spinner)
         return footerView
     }
@@ -120,18 +118,25 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         }
     }
 
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        users = GitHubUsers()
-//        self.spinner.stopAnimating()
-//        getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
-//
-//            if let mQuery = result as? String {
-//                if mQuery == searchText {
-//                    self.usersTableView.reloadData();
-//                }
-//            }
-//        }
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        users = GitHubUsers()
+        self.spinner.stopAnimating()
+        
+        if searchText.count == 0
+        {
+            usersTableView.reloadData();
+            return
+        }
+        
+        getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
+
+            if let mQuery = result as? String {
+                if mQuery == searchText {
+                    self.usersTableView.reloadData();
+                }
+            }
+        }
+    }
     
 }
 

@@ -25,18 +25,10 @@ class WebServiceHandler : NSObject {
     
     func fetchDataFromWebService(url:String,method: HTTPMethod,_ parameters: Dictionary<String , AnyObject>, closure:@escaping (_ completion: Any) -> Void) {
         
-//        //Cancel All Requests
-//        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadData, downloadData) in
-//            sessionDataTask.forEach { $0.cancel() }
-//            uploadData.forEach { $0.cancel() }
-//            downloadData.forEach { $0.cancel() }
-//
-//        }
-        
-//        //Add Delay
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-//
-//        })
+        //Cancel All Requests
+        Alamofire.SessionManager.default.session.getAllTasks { tasks in
+            tasks.forEach { $0.cancel() }
+        }
         
         Alamofire.request(url, method: method, parameters: nil, headers: nil).responseJSON { (response:DataResponse<Any>) in
             
