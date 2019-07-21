@@ -63,6 +63,17 @@ class GitHubUser {
         type = json["type"] as? String
         site_admin = json["site_admin"] as? Bool
         score = json["score"] as? Double
+        
+        name = json["name"] as? String
+        company = json["company"] as? String
+        blog = json["blog"] as? String
+        location = json["location"] as? String
+        email = json["email"] as? String
+        public_repos = json["public_repos"] as? Int? ?? 0
+        public_gists = json["public_gists"] as? Int? ?? 0
+        followers = json["followers"] as? Int? ?? 0
+        following = json["following"] as? Int? ?? 0
+        
         hireable = json["hireable"] as? Bool
         bio = json["bio"] as? String
         updated_at = json["updated_at"] as? String

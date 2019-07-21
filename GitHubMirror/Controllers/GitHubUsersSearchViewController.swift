@@ -17,9 +17,10 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     let apilinks = ApiLinks.init()
     let webServiceHandler = WebServiceHandler.init()
 
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var userSearchBar: UISearchBar!
-    
+    @IBOutlet weak var animatedLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GitHub Users"
@@ -32,10 +33,11 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     
     func getUsersForSearchQuery(pageNumber:Int,_ query:String,closure:@escaping (_ completion: Any) -> Void) {
         spinner.startAnimating()
+        tableViewTopConstraint.constant = 0
 //        self.usersTableView.reloadData()
         let apilinks = ApiLinks.init()
         apilinks.searchPage = pageNumber
-        apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+	        apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
         webServiceHandler.fetchDataFromWebService(url:apilinks.getUsersSearchUrl(),method:.get,[:], closure:
             {
@@ -45,12 +47,16 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                 {
                     let users = GitHubUsers.init(json:resultDictionary)
                     self.users.items.append(contentsOf: users.items)
+                    
+                    self.animateResultsLabel(resultsCount: users.total_count ?? 0)
+                    
                     closure(query)
                 }
                 else
                 {
                     //Error
                     closure(response)
+                    self.handleError(error: response as! Error)
                 }
 //                self.usersTableView.reloadData()
                 self.spinner.stopAnimating()
@@ -65,10 +71,12 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         
         let cell:GitHubUserCell = (self.usersTableView.dequeueReusableCell(withIdentifier: "user_cell") as! GitHubUserCell?)!
         
-        let url = URL(string: self.users.items[indexPath.row].avatar_url ?? "github_logo.png")!
-        let placeholderImage = UIImage(named: "github_logo.png")!
-        cell.userImageView.af_setImage(withURL: url, placeholderImage: placeholderImage)
-        cell.userTitle?.text = self.users.items[indexPath.row].login ?? "Title"
+        if self.users.items.count > indexPath.row {
+            let url = URL(string: self.users.items[indexPath.row].avatar_url ?? "github_logo.png")!
+            let placeholderImage = UIImage(named: "github_logo.png")!
+            cell.userImageView.af_setImage(withURL: url, placeholderImage: placeholderImage)
+            cell.userTitle?.text = self.users.items[indexPath.row].login ?? "Title"
+        }
         
         return cell
     }
@@ -124,12 +132,13 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         
         if searchText.count == 0
         {
+            self.tableViewTopConstraint.constant = 0
             usersTableView.reloadData();
             return
         }
         
         getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
-
+            
             if let mQuery = result as? String {
                 if mQuery == searchText {
                     self.usersTableView.reloadData();
@@ -138,6 +147,28 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         }
     }
     
+    func animateResultsLabel(resultsCount:Int)
+    {
+        self.tableViewTopConstraint.constant = 30
+        self.animatedLabel.center.x = self.view.center.x
+        self.animatedLabel.center.x -= self.view.bounds.width
+        
+        UIView.animate(withDuration:0.5, delay: 0, options: [.curveEaseOut], animations: {
+            self.animatedLabel.center.x += self.view.bounds.width
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        self.animatedLabel.text = "Found \(resultsCount)  Results."
+    }
+    
+    func handleError(error:Error)
+    {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            }))
+            self.present(alert, animated: true, completion: nil)
+    }
 }
 
 

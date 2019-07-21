@@ -44,16 +44,17 @@ class WebServiceHandler : NSObject {
                         }
                     }
                 }
-                else if response.response?.statusCode == 0{
-                    
-                }
                 else  {
-                    if let _ = response.result.value as? Error {
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        DispatchQueue.main.async {
+                            closure(JSON)
+                        }
                     }
                 }
-            case .failure(let error):
+            case .failure(_):
                 DispatchQueue.main.async {
-                    closure(error)
+                    closure(response.result.error!)
                 }
                 //TODO:Dismiss HUD
             }}

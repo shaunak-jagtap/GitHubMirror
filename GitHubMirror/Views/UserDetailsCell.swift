@@ -21,7 +21,7 @@ class UserDetailsCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        userImageView.layer.cornerRadius = 40;
+        userImageView.layer.cornerRadius = userImageView.bounds.width/2;
         userImageView.layer.borderWidth = 2;
         userImageView.layer.borderColor = UIColor.white.cgColor
         
