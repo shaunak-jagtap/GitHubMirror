@@ -48,7 +48,8 @@ class GitHubUser {
         site_admin = json["site_admin"] as? Bool
         score = json["score"] as? Double
     }
-
+    
+    init(){}
     
 }
 

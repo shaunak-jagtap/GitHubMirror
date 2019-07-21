@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="61" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5xB-Ry-YYC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="61" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5xB-Ry-YYC">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="user_cell" id="chM-9P-jDo" customClass="GitHubUserCell" customModule="GitHubMirror" customModuleProvider="target">
@@ -60,7 +60,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="puM-NB-HLt"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nO3-Dm-KIe">
+                            <searchBar contentMode="redraw" placeholder="Search Users" translatesAutoresizingMaskIntoConstraints="NO" id="nO3-Dm-KIe">
                                 <rect key="frame" x="0.0" y="44" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ZIv-mc-rXf"/>
@@ -91,22 +91,23 @@
                     <connections>
                         <outlet property="userSearchBar" destination="nO3-Dm-KIe" id="hZ4-fH-m1k"/>
                         <outlet property="usersTableView" destination="5xB-Ry-YYC" id="fGf-Tf-liw"/>
+                        <segue destination="l1d-RR-Klk" kind="show" identifier="user_details_segue" id="U1H-Dz-qeV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Git Hub User Details View Controller-->
         <scene sceneID="zUm-bx-4nc">
             <objects>
-                <viewController id="l1d-RR-Klk" sceneMemberID="viewController">
+                <viewController id="l1d-RR-Klk" customClass="GitHubUserDetailsViewController" customModule="GitHubMirror" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UZc-UO-dGS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-Wr-V14">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="user_details_cell" id="GOs-Kg-7w5">
@@ -118,6 +119,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="l1d-RR-Klk" id="Ptt-iJ-tJm"/>
+                                    <outlet property="delegate" destination="l1d-RR-Klk" id="UDg-fY-OsE"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

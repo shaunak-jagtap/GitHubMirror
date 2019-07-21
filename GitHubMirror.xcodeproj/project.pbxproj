@@ -22,6 +22,7 @@
 		C15E927A22E2FD3B007ABA50 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927722E2FD3B007ABA50 /* BaseService.swift */; };
 		C15E927B22E2FD3B007ABA50 /* WebServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927822E2FD3B007ABA50 /* WebServiceHandler.swift */; };
 		C15E927D22E32796007ABA50 /* GitHubUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927C22E32796007ABA50 /* GitHubUserCell.swift */; };
+		C15E927F22E4714C007ABA50 /* GitHubUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		C15E927722E2FD3B007ABA50 /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		C15E927822E2FD3B007ABA50 /* WebServiceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHandler.swift; sourceTree = "<group>"; };
 		C15E927C22E32796007ABA50 /* GitHubUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserCell.swift; sourceTree = "<group>"; };
+		C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewController.swift; sourceTree = "<group>"; };
 		D07C63005EA8F2E38771904E /* Pods-GitHubMirror.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMirror.release.xcconfig"; path = "Target Support Files/Pods-GitHubMirror/Pods-GitHubMirror.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				C1567D4622E226F200018F29 /* GitHubUsersSearchViewController.swift */,
+				C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				C15E927D22E32796007ABA50 /* GitHubUserCell.swift in Sources */,
 				C1567D4522E226F200018F29 /* AppDelegate.swift in Sources */,
 				C15E927B22E2FD3B007ABA50 /* WebServiceHandler.swift in Sources */,
+				C15E927F22E4714C007ABA50 /* GitHubUserDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

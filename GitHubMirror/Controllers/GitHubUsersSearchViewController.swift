@@ -84,13 +84,18 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         return spinner.isAnimating ? 44 : 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = users.items[indexPath.row]
+        performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
         // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 8.0 && !spinner.isAnimating {
+        if maximumOffset - currentOffset <= 5 && !spinner.isAnimating {
             pageNumber = pageNumber + 1
             getUsersForSearchQuery(pageNumber:pageNumber,self.userSearchBar.searchTextField.text ?? "") { (result) in
                 self.usersTableView.reloadData();
@@ -104,6 +109,14 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                 self.usersTableView.reloadData();
             }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "user_details_segue" {
+            let userDetailsVC = segue.destination as! GitHubUserDetailsViewController
+            userDetailsVC.selectedUser = sender as! GitHubUser
+        }
+    }
+    
 //
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        users = GitHubUsers()
