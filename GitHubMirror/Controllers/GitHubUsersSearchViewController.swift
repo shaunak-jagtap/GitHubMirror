@@ -14,12 +14,15 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     var users : GitHubUsers = GitHubUsers()
     var pageNumber:Int = 1
     let spinner = UIActivityIndicatorView(style: .gray)
+    let apilinks = ApiLinks.init()
+    let webServiceHandler = WebServiceHandler.init()
 
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var userSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "GitHub Users"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,12 +32,9 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     
     func getUsersForSearchQuery(pageNumber:Int,_ query:String,closure:@escaping (_ completion: Any) -> Void) {
         spinner.startAnimating()
-        self.usersTableView.reloadData()
-        let apilinks = ApiLinks.init()
         apilinks.searchPage = pageNumber
         apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        let webServiceHandler = WebServiceHandler.init()
         webServiceHandler.fetchDataFromWebService(url:apilinks.getUsersSearchUrl(),method:.get,[:], closure:
             {
                 response in
@@ -43,13 +43,14 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                 {
                     let users = GitHubUsers.init(json:resultDictionary)
                     self.users.items.append(contentsOf: users.items)
-                    closure("success")
+                    closure(query)
                 }
                 else
                 {
                     //Error
                     closure(response)
                 }
+//                self.usersTableView.reloadData()
                 self.spinner.stopAnimating()
         })
     }
@@ -63,12 +64,10 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         let cell:GitHubUserCell = (self.usersTableView.dequeueReusableCell(withIdentifier: "user_cell") as! GitHubUserCell?)!
         
         let url = URL(string: self.users.items[indexPath.row].avatar_url ?? "github_logo.png")!
-        
         let placeholderImage = UIImage(named: "github_logo.png")!
-        
         cell.userImageView.af_setImage(withURL: url, placeholderImage: placeholderImage)
-        
         cell.userTitle?.text = self.users.items[indexPath.row].login ?? "Title"
+        
         return cell
     }
     
@@ -104,6 +103,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     }
         
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.spinner.stopAnimating()
         users = GitHubUsers()
         getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
                 self.usersTableView.reloadData();
@@ -116,14 +116,20 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
             userDetailsVC.selectedUser = sender as! GitHubUser
         }
     }
-    
-//
+
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        users = GitHubUsers()
+//        self.spinner.stopAnimating()
 //        getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
-//            self.usersTableView.reloadData();
+//
+//            if let mQuery = result as? String {
+//                if mQuery == searchText {
+//                    self.usersTableView.reloadData();
+//                }
+//            }
 //        }
 //    }
+    
 }
 
 

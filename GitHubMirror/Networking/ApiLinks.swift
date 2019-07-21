@@ -10,9 +10,12 @@ import Foundation
 class ApiLinks : NSObject {
     
     var httpPart = "https://"
-    
-    var localHost = "api.github.com/search/"
-    var searchWord = ""
+    var localHost = "api.github.com"
+    var searchEndPoint = "/search/"
+    var userDetailsEndPoint = "/users/"
+    var searchWord = "query"
+    var username = "username"
+    var userDetailsApiExtension = "userName"
     var searchPage = 0
     var host = String()
     
@@ -20,10 +23,11 @@ class ApiLinks : NSObject {
 
     
     func getUsersSearchUrl() -> String {
-        
-        let apiExtension = "users?q=\(searchWord)&page=\(searchPage)"
-        
-        return "\(self.httpPart)\(localHost)\(apiExtension)"
-        
+        let usersApiExtension = "users?q=\(searchWord)&page=\(searchPage)"
+        return "\(self.httpPart)\(localHost)\(searchEndPoint)\(usersApiExtension)"
+    }
+
+    func getUserDetailsSearchUrl() -> String {
+        return "\(self.httpPart)\(localHost)\(userDetailsEndPoint)\(username)"
     }
 }
