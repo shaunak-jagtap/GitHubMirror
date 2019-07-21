@@ -9,29 +9,45 @@
 import Foundation
 
 class GitHubUser {
-    var login               : String?
-    var git_id              : Double?
-    var node_id             : String?
-    var avatar_url          : String?
-    var gravatar_id         : String?
-    var url                 : String?
-    var html_url            : String?
-    var followers_url       : String?
-    var gists_url           : String?
-    var starred_url         : String?
-    var subscriptions_url   : String?
-    var organizations_url   : String?
-    var repos_url           : String?
-    var events_url          : String?
-    var received_events_url : String?
-    var type                : String?
-    var site_admin          : Bool?
-    var score               : Double?
     
+    var login: String?
+    var git_id: Double?
+    var node_id: String?
+    var avatar_url: String?
+    var gravatar_id: String?
+    var url: String?
+    var html_url: String?
+    var followers_url: String?
+    var following_url: String?
+    var gists_url: String?
+    var starred_url: String?
+    var subscriptions_url: String?
+    var organizations_url: String?
+    var repos_url: String?
+    var events_url: String?
+    var received_events_url: String?
+    var type: String?
+    var site_admin: Bool?
+
+    var name: String?
+    var company: String?
+    var blog: String?
+    var location: String?
+    var email: String?
+    var public_repos: Int?
+    var public_gists: Int?
+    var followers: Int?
+    var following: Int?
+    var score: Double?
+    
+    var hireable: Bool?
+    var bio: String?
+    var updated_at: String?
+    var created_at: String?
     
     init(json:Dictionary<String, Any>) {
         login   = json["login"] as? String
-        git_id  = json["git_id"] as? Double
+        git_id  = json["id"] as? Double
         node_id = json["node_id"] as? String
         avatar_url   = json["avatar_url"] as? String
         url  = json["url"] as? String
@@ -47,6 +63,10 @@ class GitHubUser {
         type = json["type"] as? String
         site_admin = json["site_admin"] as? Bool
         score = json["score"] as? Double
+        hireable = json["hireable"] as? Bool
+        bio = json["bio"] as? String
+        updated_at = json["updated_at"] as? String
+        created_at = json["created_at"] as? String
     }
     
     init(){}
