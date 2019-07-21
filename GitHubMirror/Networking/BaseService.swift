@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  NewsArchives
 //
-//  Created by Sagar  Patil on 05/06/19.
+//  Created by Shaunak Jagtap on 05/06/19.
 //  Copyright © 2019 Shaunak Jagtap. All rights reserved.
 //
 
@@ -30,16 +30,14 @@ class BaseService {
         
         let url = getWebServiceUrl()
         
-        let dataRequest: DataRequest?
-        
         switch method {
         case .get:
-            dataRequest = request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseString { (response) in
+            request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseString { (response) in
                 self.serializeResponse(response: response, completion: completion)
                 self.sessionManager.removeValue(forKey: url)
             }
         default:
-            dataRequest = request(url, method: method, parameters: params, headers: headers).responseString { (response) in
+            request(url, method: method, parameters: params, headers: headers).responseString { (response) in
                 self.serializeResponse(response: response, completion: completion)
                 self.sessionManager.removeValue(forKey: url)
             }

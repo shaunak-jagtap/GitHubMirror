@@ -32,6 +32,8 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     
     func getUsersForSearchQuery(pageNumber:Int,_ query:String,closure:@escaping (_ completion: Any) -> Void) {
         spinner.startAnimating()
+//        self.usersTableView.reloadData()
+        let apilinks = ApiLinks.init()
         apilinks.searchPage = pageNumber
         apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
@@ -73,8 +75,9 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+//        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
         footerView.frame = CGRect.init(x: 0, y: 0, width: tableView.bounds.width, height: 44)
+        spinner.center = footerView.center
         footerView.addSubview(spinner)
         return footerView
     }
