@@ -45,12 +45,20 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                 
                 if let resultDictionary = response as? Dictionary<String, Any>
                 {
-                    let users = GitHubUsers.init(json:resultDictionary)
-                    self.users.items.append(contentsOf: users.items)
-                    
-                    self.animateResultsLabel(resultsCount: users.total_count ?? 0)
-                    
-                    closure(query)
+                    if let mError = resultDictionary["message"] as? String {
+                        let lError:NSError = NSError.init(domain: mError, code: 999, userInfo:nil)
+                        self.handleError(error: lError)
+                    }
+                    else
+                    {
+                        let users = GitHubUsers.init(json:resultDictionary)
+                        
+                        self.users.items.append(contentsOf: users.items)
+                        
+                        self.animateResultsLabel(resultsCount: users.total_count ?? 0)
+                        
+                        closure(query)
+                    }
                 }
                 else
                 {
@@ -161,13 +169,14 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         self.animatedLabel.text = "Found \(resultsCount)  Results."
     }
     
-    func handleError(error:Error)
-    {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        
+    func handleError(error:Error)    {        if error.localizedDescription != "cancelled"
+        {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             }))
             self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
