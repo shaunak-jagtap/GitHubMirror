@@ -14,7 +14,9 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
     
     @IBOutlet weak var userDetailsTableView: UITableView!
     var selectedUser = GitHubUser()
-    
+    var displayedIndexes : [IndexPath] = []
+    var profilePic : UIImage!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = selectedUser.login
@@ -41,6 +43,15 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         })
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "user_image_segue" {
+            let userDetailsVC = segue.destination as! UserProfileImageViewController
+            userDetailsVC.profileImage = profilePic
+
+
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -130,10 +141,26 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             let blurView = UIVisualEffectView(effect: darkBlur)
             blurView.frame = cell.bounds
             mCell.bgImageView.addSubview(blurView)
+            profilePic = mCell.userImageView.image
+        }
+        
+        //Animation
+        if ( displayedIndexes.contains(indexPath) == false && indexPath.section == 1 ) {
+            displayedIndexes.append(indexPath)
+            
+            //animates the cell as it is being displayed for the first time
+            cell.transform = CGAffineTransform(translationX: 0, y: 60/2)
+            cell.alpha = 0
+
+            UIView.animate(withDuration: 0.4, delay: 0.09*Double(indexPath.row), options: [.curveEaseInOut], animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                cell.alpha = 1
+            }, completion: nil)
+            
         }
         
         
-        
+        //to make section corners round TODO: does not work debug later
         if (cell.responds(to: #selector(getter: UIView.tintColor)))
         {
             let cornerRadius: CGFloat = 10.0

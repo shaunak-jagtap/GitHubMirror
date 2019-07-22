@@ -155,15 +155,28 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRP-8w-J8w">
+                                                    <rect key="frame" x="137.5" y="21" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="N5z-D8-pdN"/>
+                                                        <constraint firstAttribute="height" constant="100" id="vgP-Rh-Qlz"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="Zbl-9y-z9b" kind="show" identifier="user_image_segue" id="f1A-qK-BGf"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hSn-Rf-MTt" secondAttribute="trailing" constant="20" id="707-Sw-fHD"/>
+                                                <constraint firstItem="eRP-8w-J8w" firstAttribute="top" secondItem="PFH-9d-Ldy" secondAttribute="topMargin" constant="10" id="ImQ-cf-Aih"/>
                                                 <constraint firstItem="Z11-ki-cHH" firstAttribute="leading" secondItem="PFH-9d-Ldy" secondAttribute="leading" id="Jhl-4S-lwo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="rjg-dg-bPH" secondAttribute="trailing" constant="20" id="MeP-Vw-QmD"/>
                                                 <constraint firstItem="hSn-Rf-MTt" firstAttribute="leading" secondItem="PFH-9d-Ldy" secondAttribute="leadingMargin" constant="20" id="Qg5-Px-dLU"/>
                                                 <constraint firstAttribute="trailing" secondItem="Z11-ki-cHH" secondAttribute="trailing" id="Ugw-Xe-hzs"/>
                                                 <constraint firstItem="y8E-sc-vlL" firstAttribute="centerX" secondItem="PFH-9d-Ldy" secondAttribute="centerX" id="e4r-8Z-90n"/>
                                                 <constraint firstAttribute="bottom" secondItem="Z11-ki-cHH" secondAttribute="bottom" id="k83-6x-ZSz"/>
+                                                <constraint firstItem="eRP-8w-J8w" firstAttribute="centerX" secondItem="Z11-ki-cHH" secondAttribute="centerX" id="ps4-2e-AWA"/>
                                                 <constraint firstItem="hSn-Rf-MTt" firstAttribute="top" secondItem="rjg-dg-bPH" secondAttribute="bottom" constant="10" id="qvr-Hf-35B"/>
                                                 <constraint firstItem="rjg-dg-bPH" firstAttribute="leading" secondItem="PFH-9d-Ldy" secondAttribute="leadingMargin" constant="20" id="sQM-a0-9ge"/>
                                                 <constraint firstItem="y8E-sc-vlL" firstAttribute="top" secondItem="PFH-9d-Ldy" secondAttribute="topMargin" constant="10" id="vje-PK-qiw"/>
@@ -175,6 +188,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bgImageView" destination="Z11-ki-cHH" id="Ff3-hh-voC"/>
+                                            <outlet property="userImageButton" destination="eRP-8w-J8w" id="py4-3j-qCY"/>
                                             <outlet property="userImageView" destination="y8E-sc-vlL" id="nIv-kE-wcL"/>
                                             <outlet property="userLocation" destination="hSn-Rf-MTt" id="Wcm-4S-XvL"/>
                                             <outlet property="userTitle" destination="rjg-dg-bPH" id="Oik-7y-DNp"/>
@@ -261,6 +275,47 @@
                 </imageView>
             </objects>
             <point key="canvasLocation" x="1946" y="134"/>
+        </scene>
+        <!--User Profile Image View Controller-->
+        <scene sceneID="rDr-ws-NVI">
+            <objects>
+                <viewController id="Zbl-9y-z9b" customClass="UserProfileImageViewController" customModule="GitHubMirror" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oLT-Le-rcW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SFe-YZ-aIt">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-hR-ZUA">
+                                <rect key="frame" x="87.5" y="255.5" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.60019432110000004" green="0.11185486880000001" blue="0.21835497670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="WgG-px-w4E"/>
+                                    <constraint firstAttribute="width" constant="200" id="md4-YJ-lM9"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lto-Ug-oNs" firstAttribute="bottom" secondItem="SFe-YZ-aIt" secondAttribute="bottom" id="Dpd-mi-rhp"/>
+                            <constraint firstItem="SFe-YZ-aIt" firstAttribute="top" secondItem="lto-Ug-oNs" secondAttribute="top" id="Gpt-6U-9BG"/>
+                            <constraint firstItem="Ddu-hR-ZUA" firstAttribute="centerX" secondItem="SFe-YZ-aIt" secondAttribute="centerX" id="JbJ-WY-QAm"/>
+                            <constraint firstItem="Ddu-hR-ZUA" firstAttribute="centerY" secondItem="SFe-YZ-aIt" secondAttribute="centerY" id="Qi9-Sk-eHF"/>
+                            <constraint firstItem="lto-Ug-oNs" firstAttribute="trailing" secondItem="SFe-YZ-aIt" secondAttribute="trailing" id="S2j-1n-cVB"/>
+                            <constraint firstItem="SFe-YZ-aIt" firstAttribute="leading" secondItem="lto-Ug-oNs" secondAttribute="leading" id="VJQ-1A-wus"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lto-Ug-oNs"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgImageview" destination="SFe-YZ-aIt" id="4Fa-p0-o16"/>
+                        <outlet property="profileImageview" destination="Ddu-hR-ZUA" id="8N7-QL-8IY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rVa-IS-HOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sSc-ne-08S">

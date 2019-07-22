@@ -15,7 +15,8 @@ class UserDetailsCell: UITableViewCell {
     @IBOutlet weak var bgBlurView: UIVisualEffectView!
     @IBOutlet weak var userTitle: UILabel!
     @IBOutlet weak var userLocation: UILabel!
-
+    @IBOutlet weak var userImageButton: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

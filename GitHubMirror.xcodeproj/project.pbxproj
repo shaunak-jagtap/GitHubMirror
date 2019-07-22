@@ -23,6 +23,7 @@
 		C15E927B22E2FD3B007ABA50 /* WebServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927822E2FD3B007ABA50 /* WebServiceHandler.swift */; };
 		C15E927D22E32796007ABA50 /* GitHubUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927C22E32796007ABA50 /* GitHubUserCell.swift */; };
 		C15E927F22E4714C007ABA50 /* GitHubUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */; };
+		F402797522E65599007009A1 /* UserProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402797422E65599007009A1 /* UserProfileImageViewController.swift */; };
 		F40D83B222E472360008FE2F /* UserDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D83B122E472360008FE2F /* UserDetailsCell.swift */; };
 		F4D6FE9F22E495C600248EA2 /* GitUserDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6FE9E22E495C600248EA2 /* GitUserDetailCell.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		C15E927C22E32796007ABA50 /* GitHubUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserCell.swift; sourceTree = "<group>"; };
 		C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewController.swift; sourceTree = "<group>"; };
 		D07C63005EA8F2E38771904E /* Pods-GitHubMirror.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMirror.release.xcconfig"; path = "Target Support Files/Pods-GitHubMirror/Pods-GitHubMirror.release.xcconfig"; sourceTree = "<group>"; };
+		F402797422E65599007009A1 /* UserProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageViewController.swift; sourceTree = "<group>"; };
 		F40D83B122E472360008FE2F /* UserDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsCell.swift; sourceTree = "<group>"; };
 		F4D6FE9E22E495C600248EA2 /* GitUserDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserDetailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +191,7 @@
 			children = (
 				C1567D4622E226F200018F29 /* GitHubUsersSearchViewController.swift */,
 				C15E927E22E4714C007ABA50 /* GitHubUserDetailsViewController.swift */,
+				F402797422E65599007009A1 /* UserProfileImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			files = (
 				C1567D4D22E226F200018F29 /* GitHubMirror.xcdatamodeld in Sources */,
 				C1567D7722E23EDB00018F29 /* GitHubUser.swift in Sources */,
+				F402797522E65599007009A1 /* UserProfileImageViewController.swift in Sources */,
 				C1567D7922E23F4E00018F29 /* GitHubUsers.swift in Sources */,
 				C1567D4722E226F200018F29 /* GitHubUsersSearchViewController.swift in Sources */,
 				C15E927A22E2FD3B007ABA50 /* BaseService.swift in Sources */,
