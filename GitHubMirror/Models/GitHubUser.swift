@@ -76,8 +76,22 @@ class GitHubUser {
         
         hireable = json["hireable"] as? Bool
         bio = json["bio"] as? String
-        updated_at = json["updated_at"] as? String
-        created_at = json["created_at"] as? String
+        updated_at = formatDate(date: json["updated_at"] as? String ?? "")
+        created_at = formatDate(date: json["created_at"] as? String ?? "")
+    }
+    
+    func formatDate(date:String) -> String
+    {
+        if date.count == 0 {
+            return ""
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
+        let myDate = dateFormatter.date(from: date)!
+        
+        dateFormatter.dateFormat = "MMM dd, YYYY"
+        return dateFormatter.string(from: myDate)
     }
     
     init(){}

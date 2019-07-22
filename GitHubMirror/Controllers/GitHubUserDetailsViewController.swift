@@ -41,7 +41,7 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,26 +76,36 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             case 1:
                 cell.userTitle.text = "Followers"
                 cell.userSubTitle.text = "\(selectedUser.followers ?? 0)"
+                cell.userImageView.image = UIImage(named: "followers")!
                 break
                 
             case 2:
                 cell.userTitle.text = "Following"
                 cell.userSubTitle.text = "\(selectedUser.following ?? 0)"
+                cell.userImageView.image = UIImage(named: "following")!
                 break
                 
             case 3:
                 cell.userTitle.text = "Public repos"
                 cell.userSubTitle.text = "\(selectedUser.public_repos ?? 0)"
+                cell.userImageView.image = UIImage(named: "fork")!
                 break
                 
             case 4:
                 cell.userTitle.text = "Updated at"
                 cell.userSubTitle.text = selectedUser.updated_at
+                cell.userImageView.image = UIImage(named: "updated")!
                 break
                 
             case 5:
                 cell.userTitle.text = "Public gists"
                 cell.userSubTitle.text = "\(selectedUser.public_gists ?? 0)"
+                break
+                
+            case 6:
+                cell.userTitle.text = "Bio"
+                cell.userSubTitle.text = selectedUser.bio
+                cell.userImageView.image = UIImage(named: "bio")!
                 break
                 
             default:
@@ -128,5 +138,12 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         }
 
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let viewController = storyboard.instantiateViewController(withIdentifier :"listVC")
+//        self.present(viewController, animated: true)
+//    }
     
 }

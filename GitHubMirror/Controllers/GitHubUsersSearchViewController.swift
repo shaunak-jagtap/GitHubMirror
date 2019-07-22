@@ -101,8 +101,11 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = users.items[indexPath.row]
-        performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
+        if indexPath.row < users.items.count
+        {
+            let selectedItem = users.items[indexPath.row]
+            performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
