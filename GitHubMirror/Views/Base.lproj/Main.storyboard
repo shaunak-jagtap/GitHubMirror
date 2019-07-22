@@ -119,12 +119,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-Wr-V14">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-Wr-V14">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="user_details_cell" rowHeight="220" id="GOs-Kg-7w5" customClass="UserDetailsCell" customModule="GitHubMirror" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="220"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOs-Kg-7w5" id="PFH-9d-Ldy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
@@ -169,6 +172,7 @@
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bgImageView" destination="Z11-ki-cHH" id="Ff3-hh-voC"/>
                                             <outlet property="userImageView" destination="y8E-sc-vlL" id="nIv-kE-wcL"/>
@@ -177,7 +181,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="git_user_detail" rowHeight="60" id="dHz-LU-cch" customClass="GitUserDetailCell" customModule="GitHubMirror" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="248" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="275.5" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dHz-LU-cch" id="zzb-Cy-K9s">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -193,16 +197,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmE-NF-pOR">
                                                     <rect key="frame" x="65" y="10" width="300" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKJ-G2-U8I">
                                                     <rect key="frame" x="65" y="41.5" width="300" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="soo-us-THR" firstAttribute="centerY" secondItem="zzb-Cy-K9s" secondAttribute="centerY" id="8EM-6s-ssi"/>
                                                 <constraint firstAttribute="trailing" secondItem="qmE-NF-pOR" secondAttribute="trailing" constant="10" id="a9n-gY-4Nb"/>
@@ -214,6 +219,7 @@
                                                 <constraint firstItem="OKJ-G2-U8I" firstAttribute="leading" secondItem="soo-us-THR" secondAttribute="trailing" constant="10" id="sGK-64-63Y"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="userImageView" destination="soo-us-THR" id="gY1-MO-qbK"/>
                                             <outlet property="userSubTitle" destination="OKJ-G2-U8I" id="pM4-5K-h58"/>
@@ -227,7 +233,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pPv-Wr-V14" firstAttribute="top" secondItem="PXD-Am-rBB" secondAttribute="top" id="2od-mU-wRw"/>
                             <constraint firstItem="PXD-Am-rBB" firstAttribute="bottom" secondItem="pPv-Wr-V14" secondAttribute="bottom" id="AWp-qx-Zcb"/>
