@@ -88,7 +88,6 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             cell.userImageView.af_setImage(withURL: url, placeholderImage: placeholderImage)
             cell.userTitle?.text = selectedUser.login ?? "Title"
             cell.userLocation.text = selectedUser.location
-            
             return cell
         }
         else
@@ -135,13 +134,21 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         
         if indexPath.section == 0
         {
+            
             let mCell = cell as! UserDetailsCell
-            mCell.bgImageView.image = mCell.userImageView.image
+
             let darkBlur = UIBlurEffect(style: .dark)
             let blurView = UIVisualEffectView(effect: darkBlur)
             blurView.frame = cell.bounds
             mCell.bgImageView.addSubview(blurView)
+            
             profilePic = mCell.userImageView.image
+            mCell.bgImageView.alpha = 0
+            mCell.bgImageView.image = mCell.userImageView.image
+            
+            UIView.animate(withDuration: 0.9) {
+                mCell.bgImageView.alpha = 1
+            }
         }
         
         //Animation
@@ -192,7 +199,7 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             }
             
             layer.path = path
-            layer.fillColor = UIColor.yellow.withAlphaComponent(0.8).cgColor
+            layer.fillColor = UIColor.black.withAlphaComponent(0.8).cgColor
             
             if addLine {
                 let lineLayer: CALayer = CALayer()

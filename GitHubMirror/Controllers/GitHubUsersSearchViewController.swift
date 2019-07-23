@@ -21,9 +21,15 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var userSearchBar: UISearchBar!
     @IBOutlet weak var animatedLabel: UILabel!
+    
+    var debounceTimer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GitHub Users"
+        
+        usersTableView.backgroundColor = .clear
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,6 +107,8 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
         let selectedItem = users.items[indexPath.row]
         performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
     }
@@ -135,20 +143,30 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if let timer = debounceTimer {
+            timer.invalidate()
+        }
+        debounceTimer = Timer.init(timeInterval:0.4, target: self, selector: #selector(searchUsers), userInfo: nil, repeats: false)
+        RunLoop.current.add(debounceTimer!, forMode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"))
+    }
+    
+    @objc func searchUsers()
+    {
         users = GitHubUsers()
         self.spinner.stopAnimating()
         
-        if searchText.count == 0
+        if userSearchBar.searchTextField.text?.count == 0
         {
             self.tableViewTopConstraint.constant = 0
             usersTableView.reloadData();
             return
         }
         
-        getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
+        getUsersForSearchQuery(pageNumber: 1,userSearchBar.searchTextField.text ?? "") { (result) in
             
             if let mQuery = result as? String {
-                if mQuery == searchText {
+                if mQuery == self.userSearchBar.searchTextField.text {
                     self.usersTableView.reloadData();
                 }
             }
