@@ -45,12 +45,17 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "user_image_segue" {
+        if segue.identifier == "user_image_segue"
+        {
             let userDetailsVC = segue.destination as! UserProfileImageViewController
             userDetailsVC.profileImage = profilePic
-
-
         }
+        else if segue.identifier == "followers_segue"
+        {
+            
+        }
+        
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,7 +68,7 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         }
         else
         {
-            return 5
+            return 6
         }
     }
     
@@ -98,16 +103,19 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             case 0:
                 cell.userTitle.text = "Followers"
                 cell.userSubTitle.text = "\(selectedUser.followers ?? 0)"
+                cell.userImageView.image = UIImage(named: "followers")!
                 break
                 
             case 1:
                 cell.userTitle.text = "Following"
                 cell.userSubTitle.text = "\(selectedUser.following ?? 0)"
+                cell.userImageView.image = UIImage(named: "following")!
                 break
                 
             case 2:
                 cell.userTitle.text = "Public repos"
                 cell.userSubTitle.text = "\(selectedUser.public_repos ?? 0)"
+                cell.userImageView.image = UIImage(named: "fork")!
                 break
                 
             case 3:
@@ -118,6 +126,13 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             case 4:
                 cell.userTitle.text = "Updated at"
                 cell.userSubTitle.text = selectedUser.updated_at
+                cell.userImageView.image = UIImage(named: "updated")!
+                break
+                
+            case 6:
+                cell.userTitle.text = "Bio"
+                cell.userSubTitle.text = selectedUser.bio
+                cell.userImageView.image = UIImage(named: "bio")!
                 break
                 
             default:
@@ -175,7 +190,7 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
             let layer: CAShapeLayer = CAShapeLayer()
             let path: CGMutablePath = CGMutablePath()
             let bounds: CGRect = cell.bounds
-            bounds.insetBy(dx: 25.0, dy: 0.0)
+//            bounds.insetBy(dx: 25.0, dy: 0.0)
             var addLine: Bool = false
             
             if indexPath.row == 0 && indexPath.row == ( tableView.numberOfRows(inSection: indexPath.section) - 1) {
@@ -217,5 +232,17 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let viewController = storyboard.instantiateViewController(withIdentifier :"listVC")
+//        self.present(viewController, animated: true)
+        
+        if indexPath.row == 3
+        {
+            performSegue(withIdentifier: "followers_segue", sender: indexPath)
+        }
+    
+    }
     
 }

@@ -14,9 +14,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     var users : GitHubUsers = GitHubUsers()
     var pageNumber:Int = 1
     let spinner = UIActivityIndicatorView(style: .gray)
-    let apilinks = ApiLinks.init()
-    let webServiceHandler = WebServiceHandler.init()
-
+    
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var userSearchBar: UISearchBar!
@@ -29,7 +27,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         self.title = "GitHub Users"
         
         usersTableView.backgroundColor = .clear
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,11 +38,11 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     func getUsersForSearchQuery(pageNumber:Int,_ query:String,closure:@escaping (_ completion: Any) -> Void) {
         spinner.startAnimating()
         tableViewTopConstraint.constant = 0
-//        self.usersTableView.reloadData()
+        //        self.usersTableView.reloadData()
         let apilinks = ApiLinks.init()
+        let webServiceHandler = WebServiceHandler.init()
         apilinks.searchPage = pageNumber
-	        apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
+        apilinks.searchWord = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         webServiceHandler.fetchDataFromWebService(url:apilinks.getUsersSearchUrl(),method:.get,[:], closure:
             {
                 response in
@@ -58,9 +56,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                     else
                     {
                         let users = GitHubUsers.init(json:resultDictionary)
-                        
                         self.users.items.append(contentsOf: users.items)
-                        
                         self.animateResultsLabel(resultsCount: users.total_count ?? 0)
                         
                         closure(query)
@@ -72,7 +68,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
                     closure(response)
                     self.handleError(error: response as! Error)
                 }
-//                self.usersTableView.reloadData()
+                //                self.usersTableView.reloadData()
                 self.spinner.stopAnimating()
         })
     }
@@ -107,10 +103,11 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: false)
-        let selectedItem = users.items[indexPath.row]
-        performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
+        if indexPath.row < users.items.count
+        {
+            let selectedItem = users.items[indexPath.row]
+            performSegue(withIdentifier: "user_details_segue", sender: selectedItem)
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -126,13 +123,13 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
             }
         }
     }
-        
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.spinner.stopAnimating()
         users = GitHubUsers()
         getUsersForSearchQuery(pageNumber: 1,searchBar.searchTextField.text ?? "") { (result) in
-                self.usersTableView.reloadData();
-            }
+            self.usersTableView.reloadData();
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,7 +138,7 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
             userDetailsVC.selectedUser = sender as! GitHubUser
         }
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if let timer = debounceTimer {
@@ -187,10 +184,11 @@ class GitHubUsersSearchViewController: UIViewController,UITableViewDelegate,UITa
         self.animatedLabel.text = "Found \(resultsCount)  Results."
     }
     
-    func handleError(error:Error)    {        if error.localizedDescription != "cancelled"
+    func handleError(error:Error)
+    {
+        if error.localizedDescription != "cancelled"
         {
             let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             }))
             self.present(alert, animated: true, completion: nil)
