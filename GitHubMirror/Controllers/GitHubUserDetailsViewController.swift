@@ -147,7 +147,7 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
                 cell.userImageView.image = UIImage(named: "updated")!
                 break
                 
-            case 6:
+            case 5:
                 cell.userTitle.text = "Bio"
                 cell.userSubTitle.text = selectedUser.bio
                 cell.userImageView.image = UIImage(named: "bio")!

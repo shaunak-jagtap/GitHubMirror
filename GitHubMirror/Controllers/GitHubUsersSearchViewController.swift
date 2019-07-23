@@ -12,6 +12,7 @@ import AlamofireImage
 class GitHubUsersSearchViewController:GitUserBaseViewController {
     
     @IBOutlet weak var userSearchBar: UISearchBar!
+    @IBOutlet weak var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +21,25 @@ class GitHubUsersSearchViewController:GitUserBaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
         userSearchBar.becomeFirstResponder()
+        //Displayed gif in webView instead of blank tableView
+        setupWebView()
     }
     
+    func setupWebView() {
+        webView.isOpaque = false
+        let url = Bundle.main.url(forResource: "yogocat", withExtension: "gif")!
+        let data = try! Data(contentsOf: url)
+        webView.load(data, mimeType: "image/gif", textEncodingName: "UTF-8", baseURL: NSURL() as URL)
+        webView.scalesPageToFit = true
+        webView.contentMode = UIView.ContentMode.scaleAspectFit
+    }
+    
+    /**
+     * Fire nework call and fetch users from GitHub server.
+     */
     func getUsersForSearchQuery(pageNumber:Int,_ query:String,closure:@escaping (_ completion: Any) -> Void) {
         spinner.startAnimating()
         tableViewTopConstraint.constant = 0
@@ -55,7 +71,9 @@ class GitHubUsersSearchViewController:GitUserBaseViewController {
                 {
                     //Error
                     closure(response)
-                    self.handleError(error: response as! Error)
+                    if let error:Error = response as? Error {
+                        self.handleError(error: error)
+                    }
                 }
                 //                self.usersTableView.reloadData()
                 self.spinner.stopAnimating()

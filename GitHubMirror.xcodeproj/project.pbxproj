@@ -26,6 +26,7 @@
 		C1FCEBE822E776FA0060A475 /* GitUserBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCEBE722E776FA0060A475 /* GitUserBaseViewController.swift */; };
 		F402797522E65599007009A1 /* UserProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402797422E65599007009A1 /* UserProfileImageViewController.swift */; };
 		F40D83B222E472360008FE2F /* UserDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D83B122E472360008FE2F /* UserDetailsCell.swift */; };
+		F495FC5D22E7A0460036228C /* yogocat.gif in Resources */ = {isa = PBXBuildFile; fileRef = F495FC5C22E7A0460036228C /* yogocat.gif */; };
 		F4D6FE9F22E495C600248EA2 /* GitUserDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6FE9E22E495C600248EA2 /* GitUserDetailCell.swift */; };
 		FE63BECD799D9A5ADC7FDE0F /* Pods_GitHubMirror.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDC4AD1CCD675A08F80EF13 /* Pods_GitHubMirror.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		EBDC4AD1CCD675A08F80EF13 /* Pods_GitHubMirror.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubMirror.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F402797422E65599007009A1 /* UserProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageViewController.swift; sourceTree = "<group>"; };
 		F40D83B122E472360008FE2F /* UserDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsCell.swift; sourceTree = "<group>"; };
+		F495FC5C22E7A0460036228C /* yogocat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yogocat.gif; sourceTree = "<group>"; };
 		F4D6FE9E22E495C600248EA2 /* GitUserDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserDetailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 		C1567D7B22E2428100018F29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F495FC5C22E7A0460036228C /* yogocat.gif */,
 				C1567D4822E226F200018F29 /* Main.storyboard */,
 				C1567D4E22E226F400018F29 /* Assets.xcassets */,
 				C1567D5022E226F400018F29 /* LaunchScreen.storyboard */,
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1567D5222E226F400018F29 /* LaunchScreen.storyboard in Resources */,
+				F495FC5D22E7A0460036228C /* yogocat.gif in Resources */,
 				C1567D4F22E226F400018F29 /* Assets.xcassets in Resources */,
 				C1567D4A22E226F200018F29 /* Main.storyboard in Resources */,
 			);
@@ -506,6 +510,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -567,6 +572,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
