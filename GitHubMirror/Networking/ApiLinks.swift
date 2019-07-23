@@ -16,7 +16,7 @@ class ApiLinks : NSObject {
     var searchWord = "query"
     var username = "username"
     var userDetailsApiExtension = "userName"
-    var followersEndPoint = "followers"
+    var followersEndPoint = "/followers"
     var searchPage = 0
     var host = String()
     
@@ -35,5 +35,9 @@ class ApiLinks : NSObject {
 
     func getFollowersForUserUrl() -> String {
        return "\(self.httpPart)\(localHost)\(userDetailsEndPoint)\(username)\(followersEndPoint)"
+    }
+    
+    func getFollowersFollowingForUserUrl(social:String) -> String {
+        return "\(self.httpPart)\(localHost)\(userDetailsEndPoint)\(username)/\(social)"
     }
 }

@@ -27,7 +27,8 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         let apilinks = ApiLinks.init()
         let webServiceHandler = WebServiceHandler.init()
         apilinks.username = selectedUser.login ?? ""
-    webServiceHandler.fetchDataFromWebService(url:apilinks.getUserDetailsSearchUrl(),method:.get,[:], closure:
+        
+     webServiceHandler.fetchDataFromWebService(url:apilinks.getUserDetailsSearchUrl(),method:.get,[:], closure:
         {
             response in
             if let resultDictionary = response as? Dictionary<String, Any>
@@ -41,10 +42,12 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
                 //Error
             }
         })
+    
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "user_image_segue"
         {
             let userDetailsVC = segue.destination as! UserProfileImageViewController
@@ -53,6 +56,21 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         else if segue.identifier == "followers_segue"
         {
             
+            guard let indexPath = sender as? IndexPath else {
+                return
+            }
+
+            let followerssVC = segue.destination as! FollowersViewControl
+
+            if indexPath.row == 0
+            {
+                followerssVC.displaytitle = "Followers"
+            }
+            else
+            {
+                followerssVC.displaytitle = "Following"
+            }
+            followerssVC.selectedUser = selectedUser
         }
         
         
@@ -232,13 +250,10 @@ class GitHubUserDetailsViewController: UIViewController,UITableViewDelegate,UITa
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier :"listVC")
-//        self.present(viewController, animated: true)
-        
-        if indexPath.row == 3
+        if indexPath.row == 1 || ( indexPath.section == 1 && indexPath.row == 0 )
         {
             performSegue(withIdentifier: "followers_segue", sender: indexPath)
         }

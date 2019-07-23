@@ -118,11 +118,11 @@
             <objects>
                 <viewController id="l1d-RR-Klk" customClass="GitHubUserDetailsViewController" customModule="GitHubMirror" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UZc-UO-dGS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-Wr-V14">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -287,15 +287,15 @@
             <objects>
                 <viewController id="Zbl-9y-z9b" customClass="UserProfileImageViewController" customModule="GitHubMirror" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oLT-Le-rcW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SFe-YZ-aIt">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-hR-ZUA">
-                                <rect key="frame" x="87.5" y="255.5" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="223.5" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="WgG-px-w4E"/>
@@ -346,11 +346,11 @@
             <objects>
                 <viewController storyboardIdentifier="followersVC" id="gn3-ke-UJn" customClass="FollowersViewControl" customModule="GitHubMirror" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5CV-Dp-fOQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="61" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ujl-IN-55h">
-                                <rect key="frame" x="0.0" y="134" width="375" height="533"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="user_cell" id="9yy-az-QRG" customClass="GitHubUserCell" customModule="GitHubMirror" customModuleProvider="target">
@@ -395,50 +395,20 @@
                                     <outlet property="delegate" destination="gn3-ke-UJn" id="iKe-6W-vTh"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" barStyle="blackTranslucent" placeholder="Search Users" translatesAutoresizingMaskIntoConstraints="NO" id="qj2-ew-wum">
-                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="bsZ-ws-fic"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="gn3-ke-UJn" id="duu-vA-Wie"/>
-                                </connections>
-                            </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N32-Bv-4vQ">
-                                <rect key="frame" x="0.0" y="104" width="375" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="I6x-D5-LZx" firstAttribute="trailing" secondItem="Ujl-IN-55h" secondAttribute="trailing" id="BR7-sP-Mje"/>
                             <constraint firstItem="Ujl-IN-55h" firstAttribute="leading" secondItem="I6x-D5-LZx" secondAttribute="leading" id="Bkw-IC-jYc"/>
-                            <constraint firstItem="qj2-ew-wum" firstAttribute="top" secondItem="I6x-D5-LZx" secondAttribute="top" id="Eh6-O3-aFb"/>
-                            <constraint firstAttribute="trailing" secondItem="qj2-ew-wum" secondAttribute="trailing" id="Tix-JE-AtO"/>
-                            <constraint firstItem="N32-Bv-4vQ" firstAttribute="leading" secondItem="I6x-D5-LZx" secondAttribute="leading" id="bc4-ao-BR3"/>
                             <constraint firstItem="I6x-D5-LZx" firstAttribute="bottom" secondItem="Ujl-IN-55h" secondAttribute="bottom" symbolic="YES" id="cEK-hz-CJa"/>
-                            <constraint firstItem="qj2-ew-wum" firstAttribute="leading" secondItem="I6x-D5-LZx" secondAttribute="leading" id="fbo-Nz-TC7"/>
-                            <constraint firstItem="Ujl-IN-55h" firstAttribute="top" secondItem="qj2-ew-wum" secondAttribute="bottom" constant="30" id="lp9-SU-llf"/>
-                            <constraint firstItem="I6x-D5-LZx" firstAttribute="trailing" secondItem="N32-Bv-4vQ" secondAttribute="trailing" id="qFg-aP-gaU"/>
-                            <constraint firstItem="N32-Bv-4vQ" firstAttribute="top" secondItem="qj2-ew-wum" secondAttribute="bottom" id="yDX-cH-HyW"/>
-                            <constraint firstItem="Ujl-IN-55h" firstAttribute="top" secondItem="N32-Bv-4vQ" secondAttribute="bottom" id="zhU-yU-5bm"/>
+                            <constraint firstItem="Ujl-IN-55h" firstAttribute="top" secondItem="I6x-D5-LZx" secondAttribute="top" id="zk0-Ye-xuO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I6x-D5-LZx"/>
                     </view>
                     <navigationItem key="navigationItem" id="XUY-wl-43B"/>
                     <connections>
-                        <outlet property="animatedLabel" destination="N32-Bv-4vQ" id="asp-Hb-dVU"/>
-                        <outlet property="tableViewTopConstraint" destination="lp9-SU-llf" id="n4s-vW-3Em"/>
-                        <outlet property="userSearchBar" destination="qj2-ew-wum" id="PtR-Ks-Pnd"/>
                         <outlet property="usersTableView" destination="Ujl-IN-55h" id="JIm-VK-dQo"/>
+                        <segue destination="l1d-RR-Klk" kind="show" identifier="followers_details_segue" id="I8q-y4-drv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tdd-VB-ozO" sceneMemberID="firstResponder"/>
@@ -450,4 +420,7 @@
         <image name="github_logo" width="100" height="100"/>
         <image name="person.circle.fill" catalog="system" width="64" height="62"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="I8q-y4-drv"/>
+    </inferredMetricsTieBreakers>
 </document>

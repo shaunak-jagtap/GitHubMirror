@@ -38,9 +38,18 @@ class WebServiceHandler : NSObject {
                 if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
                     
                     if let result = response.result.value {
-                        let JSON = result as! NSDictionary
-                        DispatchQueue.main.async {
-                            closure(JSON)
+                        if let JSON = result as? NSDictionary {
+                            DispatchQueue.main.async {
+                                closure(JSON)
+                            }
+                        }
+                        else
+                        {
+                            if let JSON = result as? NSArray {
+                                DispatchQueue.main.async {
+                                    closure(JSON)
+                                }
+                            }
                         }
                     }
                 }
