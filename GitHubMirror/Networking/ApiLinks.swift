@@ -16,6 +16,7 @@ class ApiLinks : NSObject {
     var searchWord = "query"
     var username = "username"
     var userDetailsApiExtension = "userName"
+    var followersEndPoint = "followers"
     var searchPage = 0
     var host = String()
     
@@ -29,5 +30,10 @@ class ApiLinks : NSObject {
 
     func getUserDetailsSearchUrl() -> String {
         return "\(self.httpPart)\(localHost)\(userDetailsEndPoint)\(username)"
+    }
+    //https://api.github.com/users/shaunak-jagtap/followers
+
+    func getFollowersForUserUrl() -> String {
+       return "\(self.httpPart)\(localHost)\(userDetailsEndPoint)\(username)\(followersEndPoint)"
     }
 }
