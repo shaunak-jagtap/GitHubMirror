@@ -18,6 +18,7 @@ class GitHubUsersSearchViewController:GitUserBaseViewController {
         super.viewDidLoad()
         self.title = "GitHub Users"
         
+        print("first commit...")
     }
     
     override func viewWillAppear(_ animated: Bool) {
